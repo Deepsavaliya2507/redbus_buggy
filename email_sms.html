@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email / SMS Ticket - RedBus Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon" href="https://st.redbus.in/Images/rdc/rdc-redbus-logo.svg" type="image/x-icon">
+    <style>
+        .page-container {
+            max-width: 600px;
+            margin: 120px auto 60px;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .page-header h2 {
+            color: #3e3e52;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #3e3e52;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary-red);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #c13e44;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://st.redbus.in/Images/rdc/rdc-redbus-logo.svg" alt="RedBus Logo">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Bus Tickets</a>
+                <a href="cabrental.html">Cab Rental</a>
+                <a href="redrail.html">Train Tickets</a>
+            </div>
+            <div class="nav-right">
+                <div class="nav-item-dropdown">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="cancel_ticket.html">Cancel Ticket</a>
+                        <a href="change_date.html">Change Travel Date</a>
+                        <a href="show_ticket.html">Show My Ticket</a>
+                        <a href="email_sms.html">Email/SMS</a>
+                        <div class="divider"></div>
+                        <a href="login.html">Login/Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-container">
+        <div class="page-header">
+            <h2>Resend Ticket Details</h2>
+            <p>Get your ticket details via Email or SMS.</p>
+        </div>
+        <form>
+            <div class="form-group">
+                <label>Ticket No</label>
+                <input type="text" placeholder="Enter your ticket number">
+            </div>
+            <div class="form-group">
+                <label>Email ID / Mobile No</label>
+                <input type="text" placeholder="Enter Email or Mobile No">
+            </div>
+            <button type="submit" class="submit-btn">SUBMIT</button>
+        </form>
+        <div id="status-message"></div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>RedBus Clone Project &copy; 2026</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

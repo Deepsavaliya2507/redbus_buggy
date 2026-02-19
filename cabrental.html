@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Hire - Rent Buses Online - RedBus Clone</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="https://st.redbus.in/Images/rdc/rdc-redbus-logo.svg" type="image/x-icon">
+</head>
+
+<body>
+
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="https://st.redbus.in/Images/rdc/rdc-redbus-logo.svg" alt="redBus"></a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Bus Tickets</a>
+                <a href="cabrental.html">Cab Rental</a>
+                <a href="redrail.html">Train Tickets</a>
+            </div>
+            <div class="nav-right">
+                <div class="nav-item-dropdown">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="cancel_ticket.html">Cancel Ticket</a>
+                        <a href="change_date.html">Change Travel Date</a>
+                        <a href="show_ticket.html">Show My Ticket</a>
+                        <a href="email_sms.html">Email/SMS</a>
+                        <div class="divider"></div>
+                        <a href="login.html">Login/Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="search-widget">
+                <h1>India's No. 1 Online Bus Ticket Booking Site</h1>
+                <div class="search-container">
+                    <div class="input-group">
+                        <i class="fa-solid fa-bus"></i>
+                        <div class="input-field">
+                            <label for="source">From</label>
+                            <input type="text" id="source" placeholder="Source">
+                        </div>
+                    </div>
+                    <div class="swap-icon">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="input-field">
+                            <label for="destination">To</label>
+                            <input type="text" id="destination" placeholder="Destination">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-regular fa-calendar"></i>
+                        <div class="input-field">
+                            <label for="date">Date</label>
+                            <input type="date" id="date">
+                        </div>
+                    </div>
+                    <button class="search-btn">SEARCH BUSES</button>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="trending-offers">
+            <div class="container">
+                <div class="section-header">
+                    <h2>TRENDING OFFERS</h2>
+                </div>
+                <div class="offers-carousel">
+
+                    <div class="offer-card first">
+                        <div class="offer-details">
+                            <div class="offer-tag">BUS</div>
+                            <div class="offer-title">Save up to Rs 250 on bus tickets</div>
+                            <div class="offer-validity">Valid till 31 Aug</div>
+                            <div class="offer-footer">
+                                <div class="offer-code">FIRST</div>
+                                <div class="copy-icon"><i class="fa-regular fa-copy"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="offer-card superhit">
+                        <div class="offer-details">
+                            <div class="offer-tag">BUS</div>
+                            <div class="offer-title">Save up to Rs 300 on bus tickets</div>
+                            <div class="offer-validity">Valid till 31 Aug</div>
+                            <div class="offer-footer">
+                                <div class="offer-code">SUPERHIT</div>
+                                <div class="copy-icon"><i class="fa-regular fa-copy"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="offer-card bus300">
+                        <div class="offer-details">
+                            <div class="offer-tag">BUS</div>
+                            <div class="offer-title">Save up to Rs 200 on bus tickets</div>
+                            <div class="offer-validity">Valid till 31 Aug</div>
+                            <div class="offer-footer">
+                                <div class="offer-code">BUS300</div>
+                                <div class="copy-icon"><i class="fa-regular fa-copy"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="offer-card rbie">
+                        <div class="offer-details">
+                            <div class="offer-tag">BUS</div>
+                            <div class="offer-title">Save up to Rs 200 on bus tickets</div>
+                            <div class="offer-validity">Valid till 31 Aug</div>
+                            <div class="offer-footer">
+                                <div class="offer-code">RB200</div>
+                                <div class="copy-icon"><i class="fa-regular fa-copy"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="rtc-buses">
+            <div class="container">
+                <div class="section-header">
+                    <h2>GOVERNMENT BUSES</h2>
+                </div>
+                <div class="rtc-logos">
+                    <div class="rtc-item">
+                        <div class="rtc-img-box">
+                            <img src="https://st.redbus.in/buslogos/country/ind/logo_group/10283.png" alt="APSRTC">
+                        </div>
+                        <h3>APSRTC</h3>
+                        <p>Andhra Pradesh State Road Transport Corporation</p>
+                    </div>
+                    <div class="rtc-item">
+                        <div class="rtc-img-box">
+                            <img src="https://st.redbus.in/buslogos/country/ind/logo_group/10823.png" alt="TSRTC">
+                        </div>
+                        <h3>TSRTC</h3>
+                        <p>Telangana State Road Transport Corporation</p>
+                    </div>
+                    <div class="rtc-item">
+                        <div class="rtc-img-box">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Karnataka_State_Road_Transport_Corporation_%28KSRTC%29_logo.png?20240507095258"
+                                alt="KSRTC">
+                        </div>
+                        <h3>KSRTC</h3>
+                        <p>Kerala State Road Transport Corporation</p>
+                    </div>
+                    <div class="rtc-item">
+                        <div class="rtc-img-box">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Rajasthan_State_Road_Transport_Corporation_logo.png"
+                                alt="RSRTC">
+                        </div>
+                        <h3>RSRTC</h3>
+                        <p>Rajasthan State Road Transport Corporation</p>
+                    </div>
+                    <div class="rtc-item">
+                        <div class="rtc-img-box">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/e/ed/Uttar_Pradesh_State_Road_Transport_Corporation_logo.png"
+                                alt="UPSRTC">
+                        </div>
+                        <h3>UPSRTC</h3>
+                        <p>Uttar Pradesh State Road Transport Corporation</p>
+                    </div>
+                    <div class="rtc-item">
+                        <div class="rtc-img-box">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/HRTCHP.jpg/330px-HRTCHP.jpg"
+                                alt="HRTC">
+                        </div>
+                        <h3>HRTC</h3>
+                        <p>Himachal Road Transport Corporation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="app-install">
+            <div class="container app-flex">
+                <div class="app-content">
+                    <h2>ENJOY THE APP!</h2>
+                    <div class="app-features">
+                        <div class="feature">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div>
+                                <h4>Quick Access</h4>
+                                <p>Add to your home screen for quick access.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div>
+                                <h4>Superior Live Tracking</h4>
+                                <p>Track your bus in real-time.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-rating">
+                        <div>
+                            <span class="rating-box">4.5 <i class="fa-solid fa-star"></i></span>
+                            <p>50M+ Downloads</p>
+                            <p>Play Store</p>
+                        </div>
+                        <div>
+                            <span class="rating-box">4.6 <i class="fa-solid fa-star"></i></span>
+                            <p>50M+ Downloads</p>
+                            <p>App Store</p>
+                        </div>
+                    </div>
+                    <div class="store-links">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                            alt="Get it on Google Play">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
+                            alt="Download on the App Store">
+                    </div>
+                </div>
+                <div class="app-image">
+
+                    <img src="https://s3.rdbuz.com/web/images/homeV2/appinstall/appInstallbg.svg" style="display:none;">
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Redbus India Pvt Ltd. All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

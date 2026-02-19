@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Bus Tickets Online, Easy & Secure Booking, Top Bus Routes - RedBus</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="https://st.redbus.in/Images/rdc/rdc-redbus-logo.svg" type="image/x-icon">
+</head>
+
+<body>
+
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://st.redbus.in/Images/rdc/rdc-redbus-logo.svg" alt="redBus">
+                </a>
+            </div>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Bus Tickets</a>
+                <a href="cabrental.html">Cab Rental</a>
+                <a href="redrail.html">Train Tickets</a>
+            </div>
+            <div class="nav-right">
+                <div class="nav-item-dropdown">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="cancel_ticket.html">Cancel Ticket</a>
+                        <a href="change_date.html">Change Travel Date</a>
+                        <a href="show_ticket.html">Show My Ticket</a>
+                        <a href="email_sms.html">Email/SMS</a>
+                        <div class="divider"></div>
+                        <a href="login.html">Login/Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="hire-hero">
+        <div class="hire-tabs">
+            <div class="hire-tab active" onclick="switchTab('outstation')">Outstation</div>
+            <div class="hire-tab" onclick="switchTab('local')">Local</div>
+            <div class="hire-tab" onclick="switchTab('airport')">Airport</div>
+        </div>
+        <h1 id="hero-title">Bus Hire for every occasion</h1>
+        <p id="hero-subtitle">Rent Buses, Tempo Travellers & Cars</p>
+    </div>
+
+
+    <div id="outstation-form" class="rental-form">
+        <input type="text" id="source" placeholder="Pick-up Location">
+        <input type="text" id="destination" placeholder="Destination">
+        <input type="datetime-local" id="date">
+        <input type="number" id="passengers" placeholder="Total Passengers" min="1" style="min-width: 150px;">
+        <button class="hire-btn" onclick="bookCab()">HIRE NOW</button>
+    </div>
+
+
+    <div id="local-form" class="rental-form" style="display: none;">
+        <input type="text" placeholder="Pick-up City">
+        <select style="flex: 1; padding: 1rem; border: 1px solid #ddd; border-radius: 4px;">
+            <option value="">Select Package</option>
+            <option value="4hrs">4 Hrs / 40 Km</option>
+            <option value="8hrs">8 Hrs / 80 Km</option>
+            <option value="12hrs">12 Hrs / 120 Km</option>
+        </select>
+        <input type="date">
+        <button class="hire-btn">HIRE NOW</button>
+    </div>
+
+
+    <div id="airport-form" class="rental-form" style="display: none;">
+        <div class="radio-group">
+            <label class="radio-label">
+                <input type="radio" name="airport-type" checked>
+                <span>Drop to Airport</span>
+            </label>
+            <label class="radio-label">
+                <input type="radio" name="airport-type">
+                <span>Pickup from Airport</span>
+            </label>
+        </div>
+        <input type="text" placeholder="Enter Airport Name">
+        <input type="datetime-local">
+        <button class="hire-btn">HIRE NOW</button>
+    </div>
+
+
+    <div id="booking-result"
+        style="display: none; background: #fff; padding: 2rem; border-radius: 12px; max-width: 600px; margin: 2rem auto; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center;">
+        <h2 style="color: #2e7d32; margin-bottom: 1rem;">Booking Successful!</h2>
+        <div style="text-align: left; margin: 0 auto; width: fit-content; line-height: 1.8;">
+            <p><strong>Route:</strong> <span id="res-route"></span></p>
+            <p><strong>Date:</strong> <span id="res-date"></span></p>
+            <p><strong>Passengers:</strong> <span id="res-passengers"></span></p>
+            <hr style="margin: 1rem 0; border: 0; border-top: 1px dashed #ccc;">
+            <p style="font-size: 1.2rem; color: #d84e55;"><strong>Total Amount: ₹<span id="res-amount"></span></strong>
+            </p>
+        </div>
+        <button onclick="location.reload()"
+            style="margin-top: 1.5rem; background: #3e3e52; color: #fff; border: none; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer;">Book
+            Another</button>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+
+            document.querySelectorAll('.hire-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+
+            document.getElementById('outstation-form').style.display = 'none';
+            document.getElementById('local-form').style.display = 'none';
+            document.getElementById('airport-form').style.display = 'none';
+            document.getElementById('booking-result').style.display = 'none';
+
+
+            document.getElementById(tabName + '-form').style.display = 'flex';
+
+            const titles = {
+                'outstation': 'Bus Hire for Outstation Trips',
+                'local': 'Rent a Cab for Local City Travel',
+                'airport': 'Airport Transfers Made Easy'
+            };
+            document.getElementById('hero-title').innerText = titles[tabName];
+        }
+
+        function bookCab() {
+            const source = document.getElementById('source').value;
+            const dest = document.getElementById('destination').value;
+            const date = document.getElementById('date').value;
+            const passengers = parseInt(document.getElementById('passengers').value) || 0;
+
+            if (!source || !dest || !date || passengers <= 0) {
+                alert("Please fill all details correctly.");
+                return;
+            }
+
+
+            const baseRate = 100;
+            const randomSurcharge = Math.floor(Math.random() * (500 - 200 + 1)) + 200;
+            const totalAmount = (passengers * baseRate) + randomSurcharge;
+
+
+            document.getElementById('res-route').innerText = `${source} to ${dest}`;
+            document.getElementById('res-date').innerText = new Date(date).toLocaleString();
+            document.getElementById('res-passengers').innerText = passengers;
+            document.getElementById('res-amount').innerText = totalAmount;
+
+            document.getElementById('booking-result').style.display = 'block';
+        }
+    </script>
+
+
+    <div class="usps">
+        <div class="usp-box">
+            <i class="fa-solid fa-bus-simple"></i>
+            <h3>Broadest Choice</h3>
+            <p>Choose from a wide range of vehicles</p>
+        </div>
+        <div class="usp-box">
+            <i class="fa-solid fa-user-shield"></i>
+            <h3>Verified Drivers</h3>
+            <p>Experienced & Verified drivers strictly for you</p>
+        </div>
+        <div class="usp-box">
+            <i class="fa-solid fa-money-bill-wave"></i>
+            <h3>Transparent Pricing</h3>
+            <p>Inclusive of GST, Tolls & Taxes</p>
+        </div>
+    </div>
+
+
+    <section class="vehicles">
+        <h2>Vehicles Available</h2>
+        <div class="vehicle-grid">
+            <div class="vehicle-card">
+                <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=400&q=80" alt="Tempo Traveller"
+                    style="height: 150px; object-fit: cover;">
+                <h4>Tempo Traveller (12+ Seater)</h4>
+            </div>
+            <div class="vehicle-card">
+                <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&q=80" alt="Mini Bus"
+                    style="height: 150px; object-fit: cover;">
+                <h4>Mini Bus (22+ Seater)</h4>
+            </div>
+            <div class="vehicle-card">
+                <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&q=80" alt="Sedan"
+                    style="height: 150px; object-fit: cover;">
+                <h4>Sedan (4 Seater)</h4>
+            </div>
+            <div class="vehicle-card">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=400&q=80" alt="SUV"
+                    style="height: 150px; object-fit: cover;">
+                <h4>SUV (6 Seater)</h4>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Redbus India Pvt Ltd. All rights reserved</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

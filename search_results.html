@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bus Tickets - RedBus Clone</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="https://st.redbus.in/Images/rdc/rdc-redbus-logo.svg" type="image/x-icon">
+    <style>
+        
+        body {
+            background-color: #f4f4f4;
+        }
+
+        .search-header {
+            background-color: #fff;
+            padding: 1rem 10%;
+            margin-top: 60px;
+            
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-item {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #3e3e52;
+            cursor: pointer;
+        }
+
+        .modify-btn {
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .main-container {
+            display: flex;
+            max-width: 1200px;
+            
+            margin: 2rem auto;
+            padding: 0 2rem;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            width: 25%;
+            background: #fff;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .sidebar h4 {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            color: #3e3e52;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            color: #3e3e52;
+            cursor: pointer;
+        }
+
+        .filter-option input[type="checkbox"] {
+            accent-color: var(--primary-red);
+        }
+
+        .results-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .bus-card {
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem;
+            
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .bus-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .bus-info {
+            flex: 2;
+        }
+
+        .operator-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #3e3e52;
+        }
+
+        .bus-type {
+            font-size: 0.85rem;
+            color: #7e7e8c;
+            margin-bottom: 1rem;
+        }
+
+        .bus-amenities i {
+            margin-right: 0.8rem;
+            color: #7e7e8c;
+            font-size: 1rem;
+        }
+
+        .bus-timing {
+            flex: 1.5;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 0 2rem;
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eee;
+        }
+
+        .time-box {
+            text-align: center;
+        }
+
+        .time {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #3e3e52;
+        }
+
+        .place {
+            font-size: 0.85rem;
+            color: #7e7e8c;
+        }
+
+        .duration {
+            font-size: 0.85rem;
+            color: #7e7e8c;
+            margin-top: 10px;
+        }
+
+        .bus-price-sec {
+            flex: 1;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3e3e52;
+        }
+
+        .price span {
+            font-size: 0.9rem;
+            color: #7e7e8c;
+            font-weight: 400;
+        }
+
+        .rating {
+            background-color: #38b87c;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .select-seat-btn {
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                display: flex;
+                overflow-x: auto;
+                gap: 2rem;
+            }
+
+            .search-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .bus-card {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .bus-timing {
+                border: none;
+                padding: 0;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .bus-price-sec {
+                flex-direction: row;
+                align-items: center;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .select-seat-btn {
+                padding: 0.8rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="https://st.redbus.in/Images/rdc/rdc-redbus-logo.svg" alt="redBus"></a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Bus Tickets</a>
+                <a href="cabrental.html">Cab Rental</a>
+                <a href="redrail.html">Train Tickets</a>
+            </div>
+            <div class="nav-right">
+                <div class="nav-item-dropdown">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="cancel_ticket.html">Cancel Ticket</a>
+                        <a href="change_date.html">Change Travel Date</a>
+                        <a href="show_ticket.html">Show My Ticket</a>
+                        <a href="email_sms.html">Email/SMS</a>
+                        <div class="divider"></div>
+                        <a href="login.html">Login/Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    
+    <div class="search-header">
+        <div class="route-info">
+            <h3 id="route-display">Bangalore to Hyderabad</h3>
+            <p id="date-display">10 Jan &bull; Friday</p>
+        </div>
+        <button class="modify-btn" onclick="window.location.href='index.html'">Modify</button>
+    </div>
+
+    
+    <div class="main-container">
+        
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h4>DEPARTURE TIME</h4>
+                <div class="filter-option">
+                    <input type="checkbox" id="morning">
+                    <label for="morning">Before 6 am</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="day">
+                    <label for="day">6 am to 12 pm</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="evening">
+                    <label for="evening">12 pm to 6 pm</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="night" checked>
+                    <label for="night">After 6 pm</label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h4>BUS TYPES</h4>
+                <div class="filter-option">
+                    <input type="checkbox" id="seater">
+                    <label for="seater">Seater</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="sleeper" checked>
+                    <label for="sleeper">Sleeper</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="ac" checked>
+                    <label for="ac">AC</label>
+                </div>
+            </div>
+
+
+
+            <div class="filter-group">
+                <h4>AMENITIES</h4>
+                <div class="filter-option">
+                    <input type="checkbox" id="wifi">
+                    <label for="wifi">WIFI</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="water" checked>
+                    <label for="water">Water Bottle</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="blanket">
+                    <label for="blanket">Blanket</label>
+                </div>
+            </div>
+        </aside>
+
+        
+        <div class="results-list">
+            
+            <div class="bus-card">
+                <div class="bus-info">
+                    <div class="operator-name">IntrCity SmartBus</div>
+                    <div class="bus-type">A/C Sleeper (2+1)</div>
+                    <div class="bus-amenities">
+                        <i class="fa-solid fa-wifi" title="Wifi"></i>
+                        <i class="fa-solid fa-bottle-water" title="Water Bottle"></i>
+                        <i class="fa-solid fa-plug" title="Charging Point"></i>
+                        <i class="fa-solid fa-location-dot" title="Live Tracking"></i>
+                    </div>
+                </div>
+                <div class="bus-timing">
+                    <div class="time-box">
+                        <div class="time">22:00</div>
+                        <div class="place">Madiwala</div>
+                    </div>
+                    <div class="duration">8h 15m</div>
+                    <div class="time-box">
+                        <div class="time">06:15</div>
+                        <div class="place">Gachibowli</div>
+                    </div>
+                </div>
+                <div class="bus-price-sec">
+                    <div class="rating"><i class="fa-solid fa-star"></i> 4.8</div>
+                    <div class="price"><span>Starts from</span> INR 850</div>
+                    <button class="select-seat-btn">View Seats</button>
+                    <div style="font-size: 0.8rem; color:#777; margin-top:5px;">20 Seats Available</div>
+                </div>
+            </div>
+
+            
+            <div class="bus-card">
+                <div class="bus-info">
+                    <div class="operator-name">Orange Tours & Travels</div>
+                    <div class="bus-type">A/C Sleeper (2+1)</div>
+                    <div class="bus-amenities">
+                        <i class="fa-solid fa-bottle-water" title="Water Bottle"></i>
+                        <i class="fa-solid fa-tv" title="Movie"></i>
+                    </div>
+                </div>
+                <div class="bus-timing">
+                    <div class="time-box">
+                        <div class="time">21:30</div>
+                        <div class="place">Silk Board</div>
+                    </div>
+                    <div class="duration">8h 30m</div>
+                    <div class="time-box">
+                        <div class="time">06:00</div>
+                        <div class="place">Ameerpet</div>
+                    </div>
+                </div>
+                <div class="bus-price-sec">
+                    <div class="rating"><i class="fa-solid fa-star"></i> 4.5</div>
+                    <div class="price"><span>Starts from</span> INR 950</div>
+                    <button class="select-seat-btn">View Seats</button>
+                    <div style="font-size: 0.8rem; color:#777; margin-top:5px;">12 Seats Available</div>
+                </div>
+            </div>
+
+            
+            <div class="bus-card">
+                <div class="bus-info">
+                    <div class="operator-name">KSRTC (Kerala)</div>
+                    <div class="bus-type">Swift Deluxe Air Bus (2+2)</div>
+                    <div class="bus-amenities">
+                        <i class="fa-solid fa-location-dot" title="Live Tracking"></i>
+                    </div>
+                </div>
+                <div class="bus-timing">
+                    <div class="time-box">
+                        <div class="time">20:15</div>
+                        <div class="place">Satellite Bus Stand</div>
+                    </div>
+                    <div class="duration">9h 00m</div>
+                    <div class="time-box">
+                        <div class="time">05:15</div>
+                        <div class="place">MGBS</div>
+                    </div>
+                </div>
+                <div class="bus-price-sec">
+                    <div class="rating" style="background-color:#eab308;"><i class="fa-solid fa-star"></i> 3.9</div>
+                    <div class="price"><span>Starts from</span> INR 650</div>
+                    <button class="select-seat-btn">View Seats</button>
+                    <div style="font-size: 0.8rem; color:#777; margin-top:5px;">35 Seats Available</div>
+                </div>
+            </div>
+            
+            <div class="bus-card">
+                <div class="bus-info">
+                    <div class="operator-name">VRL Travels</div>
+                    <div class="bus-type">Multi-Axle Volvo (2+1)</div>
+                    <div class="bus-amenities">
+                        <i class="fa-solid fa-wifi" title="Wifi"></i>
+                        <i class="fa-solid fa-bottle-water" title="Water Bottle"></i>
+                        <i class="fa-solid fa-plug" title="Charging Point"></i>
+                    </div>
+                </div>
+                <div class="bus-timing">
+                    <div class="time-box">
+                        <div class="time">23:00</div>
+                        <div class="place">Majestic</div>
+                    </div>
+                    <div class="duration">7h 30m</div>
+                    <div class="time-box">
+                        <div class="time">06:30</div>
+                        <div class="place">Lakdikapul</div>
+                    </div>
+                </div>
+                <div class="bus-price-sec">
+                    <div class="rating"><i class="fa-solid fa-star"></i> 4.2</div>
+                    <div class="price"><span>Starts from</span> INR 1100</div>
+                    <button class="select-seat-btn">View Seats</button>
+                    <div style="font-size: 0.8rem; color:#777; margin-top:5px;">8 Seats Available</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Simple script to read query params and update header
+        const urlParams = new URLSearchParams(window.location.search);
+        const source = urlParams.get('from');
+        const dest = urlParams.get('to');
+        const date = urlParams.get('date');
+
+        if (source && dest) {
+            document.getElementById('route-display').innerText = `${source} to ${dest}`;
+        }
+        if (date) {
+            document.getElementById('date-display').innerText = date;
+        }
+    </script>
+</body>
+
+</html>

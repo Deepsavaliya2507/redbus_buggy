@@ -1,0 +1,971 @@
+:root {
+    --primary-red: #d84e55;
+    --text-dark: #3e3e52;
+    --text-light: #7e7e8c;
+    --bg-light: #f4f4f4;
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Lato', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%; /* More side padding like real site */
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: 60px; /* Shorter navbar */
+}
+
+.logo img {
+    height: 40px; /* Slightly smaller */
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    height: 100%;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4a4a4a;
+    padding: 0 0.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent; /* Prepare for hover */
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background-color: #d84e55;
+    color: #fff;
+    border-radius: 4px 4px 0 0; /* Add rounded corners to top */
+    border-bottom: none; /* Remove bottom border for block style */
+}
+
+.nav-right {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #4a4a4a;
+    font-weight: 500;
+}
+
+.nav-right i {
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Dropdown Menu */
+.nav-item-dropdown {
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 1001;
+    border-radius: 4px;
+    padding: 0.5rem 0;
+}
+
+.nav-item-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #3e3e52;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+    background-color: #f4f4f4;
+    color: var(--primary-red);
+}
+
+.dropdown-content .divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 5px 0;
+}
+
+/* Hero Section */
+.hero {
+    margin-top: 60px; /* Offset shorter navbar */
+    position: relative;
+    height: 500px; /* Slightly shorter */
+    /* Fallback color + Gradient Overlay + Image */
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop') no-repeat center center/cover;
+    background-color: #d84e55; /* Fallback if image fails */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-bg {
+    display: none; /* Removed separate div, used on .hero */
+}
+
+.hero h1 {
+    color: #fff;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.search-widget {
+    background: transparent;
+    width: 80%;
+    max-width: 1000px;
+    position: relative; /* Context for absolute swap */
+}
+
+.search-container {
+    display: flex;
+    background: #fff;
+    border-radius: 32px; /* Rounded corners for modern RedBus look */
+    overflow: hidden; /* Ensure button corners match container */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    height: 60px; /* Initial search height */
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    border-right: 1px solid #ddd;
+    position: relative;
+    transition: background 0.3s;
+}
+
+.input-group:hover {
+    background: #f9f9f9;
+}
+
+.input-group:last-child {
+    border-right: none;
+    flex: 0 0 auto; /* Button doesn't grow */
+    padding: 0;
+}
+
+.input-group i {
+    color: #7e7e8c;
+    font-size: 1.3rem;
+    margin-right: 1rem;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-field label {
+    font-size: 0.7rem;
+    color: #9b9b9b;
+    margin-bottom: 0; /* Tighten up */
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.input-field input {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    width: 100%;
+    padding: 0.2rem 0;
+}
+
+.input-field input::placeholder {
+    color: #ccc;
+    font-weight: 500;
+}
+
+/* Swap Icon Positioning */
+.swap-icon {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #d8d8d8;
+    border-radius: 50%;
+    background: #fff;
+    color: #666;
+    position: relative;
+    /* Position exactly in the middle of inputs using negative margins */
+    margin-left: -17.5px;
+    margin-right: -17.5px;
+    z-index: 10;
+    display: flex;
+    align-items: center; /* Centers icon inside button */
+    justify-content: center; /* Centers icon inside button */
+    align-self: center; /* Centers button vertically in container */
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.swap-icon:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.search-btn {
+    background: var(--primary-red);
+    color: #fff;
+    border: none;
+    height: 100%;
+    padding: 0 2.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.search-btn:hover {
+    background: #c13e44;
+}
+
+/* Sections Common */
+.container {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #4a4a4a;
+}
+
+.view-all-btn {
+    background: transparent;
+    border: 1px solid #aaa;
+    border-radius: 20px;
+    padding: 0.5rem 1.5rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.view-all-btn:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Trending Offers */
+.trending-offers {
+    background: #fff;
+    padding-bottom: 2rem;
+}
+
+.offers-carousel {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0 2rem 0;
+    scrollbar-width: none;
+}
+
+.offers-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.offer-card {
+    min-width: 320px;
+    height: 180px;
+    background: linear-gradient(71.04deg, rgb(12, 57, 139) -6.92%, rgb(62, 118, 216) 109.43%); /* Default blue */
+    border-radius: 16px;
+    display: flex;
+    padding: 1rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.offer-card:hover {
+    transform: scale(1.02);
+}
+
+.offer-card.first {
+    background: linear-gradient(71.04deg, rgb(36, 153, 149) -6.92%, rgb(23, 179, 173) 109.43%);
+}
+
+.offer-card.superhit {
+    background: linear-gradient(71.04deg, rgb(76, 46, 107) -6.92%, rgb(110, 66, 153) 109.43%);
+}
+
+.offer-card.bus300 {
+    background: linear-gradient(71.04deg, rgb(209, 58, 48) -6.92%, rgb(255, 82, 82) 109.43%);
+}
+
+.offer-img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 70px;
+    height: 70px;
+    margin-right: 1rem;
+    align-self: flex-start;
+    background: #fff;
+    padding: 2px;
+}
+
+.offer-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.offer-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.offer-tag {
+    background: rgba(255,255,255,0.2);
+    padding: 0.2rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    width: fit-content;
+    margin-bottom: 0.5rem;
+}
+
+.offer-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+}
+
+.offer-validity {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.offer-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.offer-code {
+    border: 1px dashed rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.copy-icon {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+/* RTC Buses */
+.rtc-buses {
+    margin-bottom: 3rem;
+}
+
+.rtc-logos {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.rtc-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 150px;
+    text-align: center;
+}
+
+.rtc-item:hover {
+    transform: translateY(-5px);
+}
+
+.rtc-img-box {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    /* transition: transform 0.3s; */
+}
+
+.rtc-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.rtc-item h3 {
+    font-size: 1.1rem;
+    color: #3e3e52;
+    margin-bottom: 0.2rem;
+}
+
+.rtc-item p {
+    font-size: 0.8rem;
+    color: #7e7e8c;
+}
+
+/* App Install */
+.app-install {
+    background-image: url('https://s3.rdbuz.com/web/images/homeV2/appinstall/appInstallbg.svg');
+    background-size: cover;
+    background-position: center bottom;
+    padding: 2rem 4rem;
+    color: #fff;
+    border-radius: 20px;
+    margin-bottom: 4rem; /* Bottom spacing */
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.app-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 1;
+}
+
+.app-content {
+    flex: 1;
+    max-width: 50%;
+}
+
+.app-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.app-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.feature i {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 5px;
+}
+
+.feature h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.feature p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.app-rating {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.rating-box {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.store-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.store-links img {
+    height: 50px;
+    cursor: pointer;
+}
+
+.app-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    /* If you had a transparent phone image, it would go here */
+}
+
+
+/* Footer Polish */
+footer {
+    background-color: #1a1a1a;
+    color: #dcdcdc; /* Lighter text */
+    padding: 3rem 0;
+    font-size: 0.9rem;
+    font-family: var(--font-primary);
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr; /* First col wider */
+    gap: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-col h4 {
+    color: #fff;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.footer-col ul li a {
+    color: #b0b0b0;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+}
+
+.footer-col ul li a:hover {
+    color: #fff;
+    padding-left: 5px; /* Subtle movement */
+}
+
+.footer-col img {
+    margin-bottom: 1rem;
+    filter: invert(1) brightness(2); /* Make logo white-ish */
+    opacity: 0.8;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-left: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--primary-red);
+}
+
+/* Responsive Polish */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 0 2rem;
+    }
+    
+    .search-widget {
+        width: 95%;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+    .app-install {
+        background-image: none;
+        background-color: #d84e55; /* Fallback brand color */
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .app-content {
+        max-width: 100%;
+        padding-left: 0;
+    }
+
+    .app-flex {
+        flex-direction: column;
+    }
+
+    .feature {
+        justify-content: center; /* Center align features */
+        text-align: left;
+    }
+
+    .app-rating, .store-links {
+        justify-content: center;
+    }
+    
+    .app-image {
+        display: none; /* Hide confusing image space on tablet/mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        height: 60px; /* Keep consistent */
+        justify-content: space-between; /* Space out logo and burger */
+        padding: 0 1.5rem;
+    }
+
+    .nav-links, .nav-right {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background: #fff;
+        padding: 1rem 0;
+        border-top: 1px solid #f4f4f4;
+    }
+
+    .nav-mobile-active {
+        display: flex !important;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+    
+    .nav-links.nav-mobile-active {
+        /* Adjust if needed to stack */
+    }
+    
+    /* We need to group them or stack them. simple way: separate containers */
+    .nav-right.nav-mobile-active {
+        top: 180px; /* Approximate height of nav-links */
+    }
+
+    /* Better approach: Group them in JS or just position them */
+    /* Let's wrap them in a container in HTML? Too much refactoring. */
+    /* Let's just make them absolute */
+    
+    .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #3e3e52;
+    }
+
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        border-bottom: 1px solid #f4f4f4;
+    }
+
+    .nav-item-dropdown {
+        justify-content: center;
+        padding: 1rem;
+    }
+    
+    .dropdown-content {
+        position: static; /* Flow naturally in mobile menu */
+        box-shadow: none;
+        background: #f9f9f9;
+        text-align: center;
+        width: 100%; /* Full width */
+        display: none; /* Controlled by hover/click */
+    }
+    
+    .nav-item-dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* ... other mobile styles ... */
+    
+    .search-container {
+        flex-direction: column;
+        height: auto;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .hero {
+        margin-top: 60px;
+        height: auto;
+        padding: 4rem 0;
+        background-position: left center; /* Adjust bg */
+    }
+
+    .input-group {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 1rem;
+    }
+
+    .swap-icon {
+        display: none; /* Hide swap on mobile stack */
+    }
+
+    .search-btn {
+        width: 100%;
+        padding: 1rem;
+        height: auto;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+        text-align: left; /* Or center */
+    }
+
+    .trending-offers {
+        padding: 0 1rem;
+    }
+    
+    .rtc-logos {
+        justify-content: center;
+    }
+}
+
+.menu-toggle {
+    display: none; /* Hide on desktop */
+}
+/* Radio Group Styling */
+.radio-group {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 0 1rem;
+    flex: 1;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #3e3e52;
+    font-weight: 500;
+    white-space: nowrap; /* Prevent text wrapping */
+    flex-shrink: 0;
+}
+
+.radio-label input[type="radio"] {
+    accent-color: var(--primary-red);
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.hire-hero {
+            height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071&auto=format&fit=crop') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hire-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hire-tabs {
+            display: flex;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hire-tab {
+            padding: 1rem 2rem;
+            color: #3e3e52;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .hire-tab.active {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .hire-tab:hover:not(.active) {
+            background: #f4f4f4;
+        }
+
+        .usps {
+            display: flex;
+            justify-content: space-around;
+            padding: 4rem 10%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .usp-box i {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .usp-box h3 {
+            margin-bottom: 0.5rem;
+            color: #3e3e52;
+        }
+
+        .vehicles {
+            padding: 4rem 10%;
+            background: #f9f9f9;
+        }
+
+        .vehicles h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #3e3e52;
+        }
+
+        .vehicle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .vehicle-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            height: 100%;
+        }
+
+        .vehicle-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .vehicle-card h4 {
+            padding: 1rem;
+            color: #3e3e52;
+        }
+
+        .rental-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 1000px; /* Increased width to fit all items */
+            margin: -80px auto 0;
+            /* Overlap hero */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: nowrap; /* Prevent wrapping as requested */
+            align-items: center; /* Center items vertically */
+            position: relative;
+            z-index: 10;
+        }
+
+        .rental-form input {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .hire-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            flex-shrink: 0; /* Prevent button from shrinking */
+            white-space: nowrap; /* Keep text on one line */
+            height: auto; /* Let it size naturally with padding */
+            align-self: stretch; /* Match height of inputs if possible, or center */
+       }

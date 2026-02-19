@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Train Tickets Online - RedRail - RedBus Clone</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="https://st.redbus.in/Images/rdc/rdc-redbus-logo.svg" type="image/x-icon">
+    <style>
+        .rail-hero {
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=2184&auto=format&fit=crop') no-repeat center center/cover;
+            background-color: #d13035;
+            margin-top: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .rail-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .rail-content {
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+        }
+
+        .rail-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .rail-logo span {
+            color: #f4f4f4;
+        }
+
+        .rail-hero h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-widget-rail {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            gap: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            flex-wrap: wrap;
+        }
+
+        .rail-input {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .rail-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .pnr-check {
+            margin-top: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .pnr-check input {
+            padding: 0.8rem;
+            width: 200px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .pnr-check button {
+            padding: 0.8rem 1.5rem;
+            background: #fff;
+            color: #d84e55;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 4rem 10%;
+            background: #fff;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            background: #fdfdfd;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-box i {
+            color: #d13035;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-widget-rail {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Reuse Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="https://st.redbus.in/Images/rdc/rdc-redbus-logo.svg" alt="redBus"></a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Bus Tickets</a>
+                <a href="cabrental.html">Cab Rental</a>
+                <a href="redrail.html">Train Tickets</a>
+            </div>
+            <div class="nav-right">
+                <div class="nav-item-dropdown">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <i class="fa-regular fa-user"></i> Account <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="cancel_ticket.html">Cancel Ticket</a>
+                        <a href="change_date.html">Change Travel Date</a>
+                        <a href="show_ticket.html">Show My Ticket</a>
+                        <a href="email_sms.html">Email/SMS</a>
+                        <div class="divider"></div>
+                        <a href="login.html">Login/Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="rail-hero-broken">
+        <div class="rail-content">
+            <div class="rail-logo">redRail</div>
+            <h2>Authorised IRCTC Partner</h2>
+
+            <div class="search-widget-rail">
+                <input type="text" class="rail-input" placeholder="From Station">
+                <input type="text" class="rail-input" placeholder="To Station">
+                <input type="date" class="rail-input">
+                <button class="rail-btn">SEARCH TRAINS</button>
+            </div>
+
+            <div class="pnr-check">
+                <h3>Check PNR Status</h3>
+                <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 10px;">
+                    <input type="number" placeholder="Enter 10-digit PNR">
+                    <button>CHECK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features-grid-broken">
+        <div class="feature-box">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            <h3>No Convenience Fee</h3>
+            <p>Save money on every booking.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fa-solid fa-headset"></i>
+            <h3>Dedicate Support</h3>
+            <p>24/7 Assistance for your train travel.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fa-solid fa-check-circle"></i>
+            <h3>Instant Refund</h3>
+            <p>Get instant refunds on cancellations.</p>
+        </div>
+    </div>
+
+    <!-- Footer Reuse -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Redbus India Pvt Ltd (RedRail). All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
